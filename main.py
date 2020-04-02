@@ -28,14 +28,24 @@ def main(stdcsr):
         stdcsr.clear()
         if ip==curses.KEY_DOWN:
            curr_row_id=(curr_row_id+1)%len(menu)  
+
         elif ip==curses.KEY_UP:
             if curr_row_id==0:
                 curr_row_id=len(menu)-1
             else:
-                curr_row_id=curr_row_id-1  
-
+                curr_row_id=curr_row_id-1 
+                
+        elif ip==curses.KEY_ENTER or ip in [10,13]:
+            stdcsr.addstr(0,0,"You have pressed the {} button".format(menu[curr_row_id]))
+            stdcsr.refresh()
+            stdcsr.getch()
+            if curr_row_id==len(menu)-1:
+                break
+             
         mai_menu(stdcsr, curr_row_id)
         stdcsr.refresh()
     curses.curs_set(1)  
 
 curses.wrapper(main)
+
+
