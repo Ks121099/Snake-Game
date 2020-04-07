@@ -21,7 +21,7 @@ def mai_menu(stdcsr, select_id):
 def main(stdcsr):
     curses.curs_set(0)  
     curr_row_id=0
-    curses.init_pair(1, curses.COLOR_BLUE, curses.COLOR_WHITE)
+    curses.init_pair(1, curses.COLOR_BLACK, curses.COLOR_WHITE)
     mai_menu(stdcsr, curr_row_id)
     while 1:
         ip=stdcsr.getch()
