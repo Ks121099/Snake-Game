@@ -1,5 +1,6 @@
 import time
 import curses
+
 stdcsr=curses.initscr()
 
 menu=['Home', 'Play','Score', 'Exit']
@@ -18,7 +19,7 @@ def mai_menu(stdcsr, select_id):
     stdcsr.refresh()
 
 
-def main(stdcsr):
+def main1(stdcsr):
     curses.curs_set(0)  
     curr_row_id=0
     curses.init_pair(1, curses.COLOR_BLACK, curses.COLOR_WHITE)
@@ -39,13 +40,13 @@ def main(stdcsr):
             stdcsr.addstr(0,0,"You have pressed the {} button".format(menu[curr_row_id]))
             stdcsr.refresh()
             stdcsr.getch()
-            if curr_row_id==len(menu)-1:
+            if curr_row_id==len(menu)-1:                   
                 break
              
         mai_menu(stdcsr, curr_row_id)
         stdcsr.refresh()
     curses.curs_set(1)  
 
-curses.wrapper(main)
+curses.wrapper(main1)
 
 

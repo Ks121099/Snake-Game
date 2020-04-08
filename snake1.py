@@ -38,14 +38,17 @@ def main2(stdcsr):
         elif direction == curses.KEY_RIGHT:
             nhead=[head[0],head[1]+1]
 
-        if nhead[0]<=box[0][0] or nhead[0]>= box[1][0] or nhead[1]<=box[0][1] or nhead[1]>= box[1][1]:
-            stdcsr.addstr(sh//2,sw//2,"GAME OVER !!!")    
-            k=stdcsr.getch()
-            break
         snake.insert(0,nhead)
         stdcsr.addstr(nhead[0],nhead[1],"⭖")
         stdcsr.addstr(snake[-1][0],snake[-1][1]," ")
         snake.pop()
+
+        if nhead[0]<=box[0][0] or nhead[0]>= box[1][0] or nhead[1]<=box[0][1] or nhead[1]>= box[1][1]:
+            stdcsr.addstr(sh//2,sw//2-len("GAME OVER !!!")//2,"GAME OVER !!!")    
+            stdcsr.refresh()    
+            time.sleep(5)
+            break
+        
         stdcsr.refresh()
         curses.curs_set(1)
 curses.wrapper(main2)
