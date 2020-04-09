@@ -1,9 +1,9 @@
 import time
 import curses
-
+from snake1 import main2
 stdcsr=curses.initscr()
 
-menu=['Home', 'Play','Score', 'Exit']
+menu=['Play Snake Game', 'Exit']
 def mai_menu(stdcsr, select_id):
     stdcsr.clear()
     h,w=stdcsr.getmaxyx()
@@ -22,7 +22,7 @@ def mai_menu(stdcsr, select_id):
 def main1(stdcsr):
     curses.curs_set(0)  
     curr_row_id=0
-    curses.init_pair(1, curses.COLOR_BLACK, curses.COLOR_WHITE)
+    curses.init_pair(1, curses.COLOR_WHITE, curses.COLOR_BLUE)
     mai_menu(stdcsr, curr_row_id)
     while 1:
         ip=stdcsr.getch()
@@ -37,11 +37,11 @@ def main1(stdcsr):
                 curr_row_id=curr_row_id-1 
                 
         elif ip==curses.KEY_ENTER or ip in [10,13]:
-            stdcsr.addstr(0,0,"You have pressed the {} button".format(menu[curr_row_id]))
-            stdcsr.refresh()
-            stdcsr.getch()
             if curr_row_id==len(menu)-1:                   
+                stdcsr.getch()
                 break
+            else:
+                main2(stdcsr)
              
         mai_menu(stdcsr, curr_row_id)
         stdcsr.refresh()
